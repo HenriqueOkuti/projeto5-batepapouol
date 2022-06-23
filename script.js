@@ -5,6 +5,8 @@
 let name;
 let msg_buffer = [];
 
+let global_aux = 0;
+
 /*========================
     AUXILIAR FUNCTIONS
 ========================*/
@@ -93,21 +95,30 @@ function messagelog(resposta) {
   
   /* NOT WORKING PROPERLY */
   const last_msg = document.querySelector(".messages_box .chat:last-child");
+  if (global_aux == 0){
+    msg_buffer.push(last_msg);
+    msg_buffer.push(last_msg);
+    global_aux++;
+  }
   msg_buffer.push(last_msg);
-  if (msg_buffer[msg_buffer.length - 1] !== msg_buffer[msg_buffer.length - 2]){
+
+  let penultimate_message = msg_buffer[msg_buffer.length - 2];
+  let last_message = msg_buffer[msg_buffer.length - 1];
+
+
+  if (last_message.innerHTML !== penultimate_message.innerHTML){
     last_msg.scrollIntoView();
-
-    if (msg_buffer.length > 3){
-      let last_message = msg_buffer[msg_buffer.length - 1];
-      let penultimate_message = msg_buffer[msg_buffer.length - 2];
-
-      msg_buffer = [];
-
-      msg_buffer.push(penultimate_message);
-      msg_buffer.push(last_message);
-    }
+    
   }
   
+  if (msg_buffer.length > 3){
+
+    msg_buffer = [];
+
+    msg_buffer.push(penultimate_message);
+    msg_buffer.push(last_message);
+
+  }
 
 }
 
