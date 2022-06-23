@@ -93,7 +93,6 @@ function messagelog(resposta) {
 
   }
   
-  /* NOT WORKING PROPERLY */
   const last_msg = document.querySelector(".messages_box .chat:last-child");
   if (global_aux == 0){
     msg_buffer.push(last_msg);

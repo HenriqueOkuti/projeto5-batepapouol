@@ -111,6 +111,12 @@ input::placeholder {
 
 }
 
+.chatbox .private-chat {
+
+    background-color: #FFDEDE;
+
+}
+
 .chatbox .time {
 
     color: gray;
@@ -125,4 +131,10 @@ input::placeholder {
 
 .chatbox strong {
     font-weight: bold;
+}
+
+.chat {
+
+    padding: 10px;
+
 }
