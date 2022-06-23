@@ -80,3 +80,33 @@ input::placeholder {
     color: black;
     font-style: italic;
 }
+
+.chatbox {
+
+    padding: 106px 0 106px 0;
+
+}
+
+.chatbox .public-chat {
+
+    margin: 4px 0 4px 0;
+
+    background-color: #FFF;
+
+    color: black;
+
+}
+
+.chatbox .public-chat .time {
+
+    color: lightgray;
+
+}
+
+.chatbox .public-chat span {
+    
+}
+
+.chatbox .public-chat strong {
+    font-weight: bold;
+}
