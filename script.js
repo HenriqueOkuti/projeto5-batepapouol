@@ -25,12 +25,32 @@ function reset() {
 
 function private_msg_check(message) {}
 
-function login_user(){
-  const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants' , {name: name});
+function login_user(error) {
+  const promise = axios.post(
+    "https://mock-api.driven.com.br/api/v6/uol/participants",
+    { name: name }
+  );
+
+  promise.catch(reset_login);
+
+
 }
 
-function keep_online(){
-  const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status' , {name: name});
+function reset_login(error) {
+  error_code = (error.response.status);
+  console.log(typeof(error_code));
+  if (error_code == 400) {
+    alert(`Usuário já presente! Tente novamente com um nome diferente de ${name}`);
+    name = undefined;
+    chat_start();
+  }
+}
+
+function keep_online() {
+  const promise = axios.post(
+    "https://mock-api.driven.com.br/api/v6/uol/status",
+    { name: name }
+  );
 }
 
 /*========================
@@ -38,7 +58,7 @@ function keep_online(){
 ========================*/
 
 function chat_start() {
-  while (name == undefined || name == ""){
+  while (name == undefined || name == "") {
     name = prompt("Qual o seu nome?");
   }
 
@@ -90,11 +110,10 @@ function messagelog(resposta) {
       </div>
       `;
     }
-
   }
-  
+
   const last_msg = document.querySelector(".messages_box .chat:last-child");
-  if (global_aux == 0){
+  if (global_aux == 0) {
     msg_buffer.push(last_msg);
     msg_buffer.push(last_msg);
     global_aux++;
@@ -104,35 +123,32 @@ function messagelog(resposta) {
   let penultimate_message = msg_buffer[msg_buffer.length - 2];
   let last_message = msg_buffer[msg_buffer.length - 1];
 
-
-  if (last_message.innerHTML !== penultimate_message.innerHTML){
+  if (last_message.innerHTML !== penultimate_message.innerHTML) {
     last_msg.scrollIntoView();
-    
   }
-  
-  if (msg_buffer.length > 3){
 
+  if (msg_buffer.length > 3) {
     msg_buffer = [];
 
     msg_buffer.push(penultimate_message);
     msg_buffer.push(last_message);
-
   }
-
 }
 
-function send_message(){
+function send_message() {
   const text = document.querySelector(".text_message").value;
   const text_obj = {
     from: name,
     to: "Todos",
     text: text,
-    type: "message"
+    type: "message",
   };
 
   document.querySelector(".text_message").value = "";
-  const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', text_obj);
+  const promise = axios.post(
+    "https://mock-api.driven.com.br/api/v6/uol/messages",
+    text_obj
+  );
   promise.then(load_messages);
   promise.catch(reset);
-
 }
