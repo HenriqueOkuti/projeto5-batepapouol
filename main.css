@@ -80,6 +80,11 @@ html {
     outline: none;
 }
 
+.send_button:hover {
+    background-color: aqua;
+    border-radius: 5px;
+}
+
 input::placeholder {
     color: black;
     font-style: italic;

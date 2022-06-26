@@ -91,7 +91,7 @@ function messagelog(resposta) {
 
 
     //Public messages
-    if (message.type == "message") {
+    if (message.type == "message" && !private_msg_check(message)) {
       messages_box.innerHTML += `
         <div class="public-chat chat">
           <span class="time">(${message.time})</span>
