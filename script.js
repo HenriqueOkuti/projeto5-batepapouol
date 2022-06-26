@@ -25,6 +25,7 @@ function reset() {
   window.location.reload();
 }
 
+//Logically verifies if message is private or not
 function private_msg_check(message) {
   if (message.to === 'Todos' || message.to !== name) {
     return false;
