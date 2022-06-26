@@ -66,6 +66,7 @@ html {
     border: none;
 
     height: 100%;
+    width: 100%;
 
     color: black;
     object-fit: cover;
@@ -94,6 +95,8 @@ input::placeholder {
 
     /*display: flex;
     align-items: center;*/
+
+    width: 100%;
 
     padding: 5px 0 5px 0;
 
